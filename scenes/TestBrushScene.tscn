@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cdjyqig04cqtm"]
+
+[ext_resource type="Texture2D" uid="uid://cdmawrr4pwe3e" path="res://Assets/Prototype/Light/texture_06.png" id="1_fu6tx"]
+[ext_resource type="Script" uid="uid://bf2cb1mtmmr20" path="res://scripts/PaintableThings/paintable_sprite.gd" id="2_g614p"]
+[ext_resource type="Script" uid="uid://canabvpwwe462" path="res://scripts/PaintableThings/world_brush.gd" id="3_d55jy"]
+
+[node name="TestBrushScene" type="Node2D" unique_id=2137923787]
+script = ExtResource("3_d55jy")
+
+[node name="PaintableSprite" type="Sprite2D" parent="." unique_id=63498633]
+position = Vector2(589, 306)
+texture = ExtResource("1_fu6tx")
+script = ExtResource("2_g614p")
