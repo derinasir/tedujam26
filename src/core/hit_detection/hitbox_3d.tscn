@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cml1b12cm175c"]
+
+[ext_resource type="Script" uid="uid://cvx7sf4eismea" path="res://src/core/hit_detection/hitbox_3d.gd" id="1_0iod6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0iod6"]
+transparency = 1
+albedo_color = Color(1, 0.34509805, 1, 0.627451)
+
+[node name="Hitbox3D" type="Area3D" unique_id=656250797 groups=["hitbox"]]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_0iod6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2019812572]
+
+[node name="Indicator" type="MeshInstance3D" parent="." unique_id=996865053]
+material_override = SubResource("StandardMaterial3D_0iod6")
