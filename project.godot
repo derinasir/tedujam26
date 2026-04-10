@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="new_project"
+config/name="tedujam26"
 run/main_scene="uid://cfu565uv2dvcg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
