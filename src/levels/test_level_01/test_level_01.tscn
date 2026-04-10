@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dsq43u8wvfdjx"]
+
+[ext_resource type="PackedScene" uid="uid://bnavpw7dtg6fa" path="res://src/player/player.tscn" id="1_5ywb8"]
+[ext_resource type="Texture2D" uid="uid://b1w8ma4swht3k" path="res://icon.svg" id="1_yiob1"]
+
+[node name="TestLevel01" type="Node2D" unique_id=121122102]
+
+[node name="Env" type="Node2D" parent="." unique_id=735130590]
+
+[node name="Icon" type="Sprite2D" parent="Env" unique_id=999880496]
+modulate = Color(1, 1, 1, 0.14117648)
+position = Vector2(382, 205)
+scale = Vector2(45.359375, 23.5)
+texture = ExtResource("1_yiob1")
+
+[node name="TileMap" type="TileMap" parent="Env" unique_id=110389197]
+format = 2
+
+[node name="Player" parent="." unique_id=974975622 instance=ExtResource("1_5ywb8")]
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1368984700]
