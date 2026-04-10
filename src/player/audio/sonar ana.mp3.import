@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bd4u0t0j2g86b"
+path="res://.godot/imported/sonar ana.mp3-45ab28d97784ee651c77073c45a98674.mp3str"
+
+[deps]
+
+source_file="res://src/player/audio/sonar ana.mp3"
+dest_files=["res://.godot/imported/sonar ana.mp3-45ab28d97784ee651c77073c45a98674.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
