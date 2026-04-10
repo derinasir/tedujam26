@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dhdsg1eo8htc3" path="res://src/player/sonar.gd" id="3_mf2ua"]
 [ext_resource type="AudioStream" uid="uid://bd4u0t0j2g86b" path="res://src/player/audio/sonar ana.mp3" id="4_244u8"]
 [ext_resource type="AudioStream" uid="uid://b7hf1fnjrdft3" path="res://src/player/audio/sonar boşluk.wav" id="5_5f2sf"]
+[ext_resource type="AudioStream" uid="uid://c126sflinenn7" path="res://src/player/audio/thrust ses.mp3" id="6_jiejy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mf2ua"]
 radius = 32.01562
@@ -29,3 +30,6 @@ sfx_void = ExtResource("5_5f2sf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741166675]
 shape = SubResource("CircleShape2D_mf2ua")
+
+[node name="ThrustAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1900394710]
+stream = ExtResource("6_jiejy")
