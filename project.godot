@@ -23,6 +23,10 @@ SceneLoader="*uid://ykkrp7flpjyp"
 SFXManager="*uid://ce14txe6a17pg"
 Constants="*uid://3qb35ytdve1"
 
+[dotnet]
+
+project/assembly_name="new_project"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
