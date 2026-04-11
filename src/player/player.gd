@@ -1,6 +1,7 @@
 extends CharacterBody2D
+class_name Player
 
-signal wall_friction_started(global_position: Vector2, normal: Vector2)
+signal wall_friction_started(global_pos: Vector2, normal: Vector2)
 signal wall_friction_ended
 
 const FORCE: float = 100.0
@@ -14,14 +15,20 @@ const VELOCITY_CAP: float = 400.0
 @export var MIN_FRICTION_SPEED: float = 50.0
 @export var ROTATION_SPEED: float = 10.0
 @export var THRUST_FADE_SPEED: float = 5.0
+@export var maxHealth: float = 100.0
+var health: float 
+
 
 var is_thruster_on: bool = false
-var _is_fricting_walls: bool = false
+var is_fricting_walls: bool = false
 var _last_input_direction: Vector2 = Vector2.UP
 
 @onready var pivot: Node2D = $Pivot
 @onready var thrust_player: AudioStreamPlayer = $ThrustAudioPlayer
 
+
+func _ready() -> void:
+	health = maxHealth
 
 func _process(_delta: float) -> void:
 	is_thruster_on = Input.is_action_pressed("thruster")
@@ -94,10 +101,17 @@ func handle_wall_friction(_delta: float) -> void:
 
 			if velocity.dot(normal) < 0:
 				velocity = velocity.slide(normal) * (1.0 - WALL_FRICTION)
+				print( "Friction started")
 				wall_friction_started.emit(point, normal)
 				current_friction_state = true
 
-	if _is_fricting_walls and not current_friction_state:
+	if is_fricting_walls and not current_friction_state:
 		wall_friction_ended.emit()
 
-	_is_fricting_walls = current_friction_state
+	is_fricting_walls = current_friction_state
+
+func get_hurt(damage: float) -> void:
+	health -= damage
+	if health <= 0:
+		GameEvents.player_died.emit()
+	pass

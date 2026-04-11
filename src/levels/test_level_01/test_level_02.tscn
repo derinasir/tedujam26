@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://badyp0tuwnrav"]
 
-[ext_resource type="Script" path="res://scripts/WorldDrawLayer.gd" id="1_2rgtv"]
+[ext_resource type="Script" uid="uid://e3qcsicy6g7a" path="res://scripts/WorldDrawLayer.gd" id="1_2rgtv"]
 [ext_resource type="Texture2D" uid="uid://b1w8ma4swht3k" path="res://icon.svg" id="1_5oo1e"]
 [ext_resource type="PackedScene" uid="uid://dpitryn5wqv4t" path="res://src/player/player2.tscn" id="2_5oo1e"]
+[ext_resource type="PackedScene" uid="uid://f11pn7xc7uju" path="res://src/ui/Healthbar.tscn" id="4_heqty"]
+[ext_resource type="Script" uid="uid://dbkvpmy5mcd1r" path="res://src/ui/healthbar.gd" id="5_7d7xq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yiob1"]
 radius = 44.04543
@@ -10,7 +12,7 @@ radius = 44.04543
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yiob1"]
 size = Vector2(40, 500)
 
-[node name="TestLevel01" type="Node2D" unique_id=121122102]
+[node name="TestLevel02" type="Node2D" unique_id=121122102]
 
 [node name="Env" type="Node2D" parent="." unique_id=735130590]
 script = ExtResource("1_2rgtv")
@@ -56,3 +58,16 @@ position = Vector2(524, 231)
 scale = Vector2(3, 3)
 
 [node name="Camera2D" type="Camera2D" parent="Player2" unique_id=1368984700]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1514247800]
+
+[node name="ProgressBar" parent="CanvasLayer" unique_id=1780067964 node_paths=PackedStringArray("player") instance=ExtResource("4_heqty")]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 439.0
+value = 100.0
+script = ExtResource("5_7d7xq")
+player = NodePath("../../Player2")
+
+[connection signal="wall_friction_ended" from="Player2" to="CanvasLayer/ProgressBar" method="_on_player_2_wall_friction_ended"]
+[connection signal="wall_friction_started" from="Player2" to="CanvasLayer/ProgressBar" method="_on_player_2_wall_friction_started"]

@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://dpitryn5wqv4t"]
 
 [ext_resource type="Script" uid="uid://bo4h7b8pb0fn3" path="res://src/player/player.gd" id="1_irso5"]
-[ext_resource type="Texture2D" path="res://Assets/submarine.png" id="2_irso5"]
+[ext_resource type="Texture2D" uid="uid://bu5tompxkvxyj" path="res://Assets/submarine.png" id="2_irso5"]
 [ext_resource type="Script" uid="uid://dhdsg1eo8htc3" path="res://src/player/sonar.gd" id="3_gg568"]
 [ext_resource type="AudioStream" uid="uid://bd4u0t0j2g86b" path="res://src/player/audio/sonar ana.mp3" id="4_bpn8n"]
 [ext_resource type="AudioStream" uid="uid://b7hf1fnjrdft3" path="res://src/player/audio/sonar boşluk.wav" id="5_03rh0"]
 [ext_resource type="AudioStream" uid="uid://c126sflinenn7" path="res://src/player/audio/thrust ses.mp3" id="6_t1ns4"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s1y7p"]
-radius = 14.0
-height = 46.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_irso5"]
+radius = 20.0
 
 [node name="Player" type="CharacterBody2D" unique_id=974975622]
 collision_layer = 4
@@ -31,7 +30,7 @@ sfx_void = ExtResource("5_03rh0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741166675]
 rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_s1y7p")
+shape = SubResource("CircleShape2D_irso5")
 
 [node name="ThrustAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1900394710]
 stream = ExtResource("6_t1ns4")
