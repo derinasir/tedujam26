@@ -12,7 +12,7 @@ light_mode = 2
 
 [sub_resource type="Gradient" id="Gradient_qxx5p"]
 offsets = PackedFloat32Array(0, 0.018072288, 1)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.080459766, 0.080459766, 0.080459766, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.08235294, 0.08235294, 0.08235294, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_87u11"]
 gradient = SubResource("Gradient_qxx5p")
