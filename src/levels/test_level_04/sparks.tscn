@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://tuppry3imiu2"]
+
+[ext_resource type="Texture2D" uid="uid://ct1pp0q4oaw0f" path="res://src/levels/test_level_04/spark_texture_rect.png" id="1_twhkb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mb2lc"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_mb2lc"]
+offsets = PackedFloat32Array(0, 0.19310345, 0.6068966, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.9999998, 0.73600864, 0.14463615, 1, 1, 0.29967153, 0.24024093, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_su5vg"]
+gradient = SubResource("Gradient_mb2lc")
+
+[sub_resource type="Curve" id="Curve_lh68x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hpr33"]
+curve = SubResource("Curve_lh68x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_su5vg"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+spread = 30.0
+initial_velocity_min = 100.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_hpr33")
+color_ramp = SubResource("GradientTexture1D_su5vg")
+
+[node name="Sparks" type="GPUParticles2D" unique_id=1246975027]
+z_index = 99
+material = SubResource("CanvasItemMaterial_mb2lc")
+amount = 200
+texture = ExtResource("1_twhkb")
+process_material = SubResource("ParticleProcessMaterial_su5vg")

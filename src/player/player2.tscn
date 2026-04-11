@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dpitryn5wqv4t"]
+[gd_scene format=3 uid="uid://25rlii7lfixo"]
 
 [ext_resource type="Script" uid="uid://bo4h7b8pb0fn3" path="res://src/player/player.gd" id="1_irso5"]
 [ext_resource type="Texture2D" uid="uid://bu5tompxkvxyj" path="res://Assets/submarine.png" id="2_irso5"]
@@ -24,6 +24,8 @@ texture = ExtResource("2_irso5")
 [node name="Sonar" type="Node2D" parent="Pivot" unique_id=1442189664]
 rotation = 1.5707964
 script = ExtResource("3_gg568")
+spread_angle = 60.0
+ray_length = 150.0
 sfx_sonar_ping = ExtResource("4_bpn8n")
 sfx_void = ExtResource("5_03rh0")
 

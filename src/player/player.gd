@@ -1,9 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-signal wall_friction_started(global_pos: Vector2, normal: Vector2)
-signal wall_friction_ended
-
 const FORCE: float = 100.0
 const THRUSTER_FORCE: float = 400.0
 const FRICTION: float = 2.0
@@ -113,23 +110,26 @@ func handle_thrust_audio(delta: float) -> void:
 
 func handle_wall_friction(_delta: float) -> void:
 	var current_friction_state: bool = false
+	var friction_point := Vector2.ZERO
+	var friction_normal := Vector2.ZERO
+	var friction_direction := Vector2.ZERO
 
 	if get_slide_collision_count() > 0 and velocity.length() > MIN_FRICTION_SPEED:
-		velocity = velocity.lerp(Vector2.ZERO, WALL_FRICTION * 0.1)
-
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)
 			var normal = collision.get_normal()
-			var point = collision.get_position()
-
 			if velocity.dot(normal) < 0:
-				velocity = velocity.slide(normal) * (1.0 - WALL_FRICTION)
-				print("Friction started")
-				wall_friction_started.emit(point, normal)
 				current_friction_state = true
+				friction_point = collision.get_position()
+				friction_normal = normal
+				friction_direction = velocity.slide(normal).normalized()
+				velocity = velocity.slide(normal) * (1.0 - WALL_FRICTION)
+				break
 
-	if is_fricting_walls and not current_friction_state:
-		wall_friction_ended.emit()
+	if current_friction_state:
+		GameEvents.wall_friction_started.emit(friction_point, friction_normal, friction_direction)
+	elif is_fricting_walls and not current_friction_state:
+		GameEvents.wall_friction_ended.emit()
 
 	is_fricting_walls = current_friction_state
 
