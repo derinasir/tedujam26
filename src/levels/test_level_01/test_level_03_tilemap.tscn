@@ -3,16 +3,26 @@
 [ext_resource type="PackedScene" uid="uid://dpitryn5wqv4t" path="res://src/player/player2.tscn" id="1_is3aj"]
 [ext_resource type="Script" uid="uid://i8g6gsn2lx8x" path="res://scripts/ConeGenerator.gd" id="2_f40no"]
 [ext_resource type="Script" uid="uid://e3qcsicy6g7a" path="res://scripts/WorldDrawLayer.gd" id="3_jst6l"]
+[ext_resource type="Shader" uid="uid://dppr7maaqy65w" path="res://src/levels/test_level_01/icon.gdshader" id="3_rerw8"]
 [ext_resource type="Script" uid="uid://b1cmu7c1hrfp8" path="res://scripts/wireframe.gd" id="4_f40no"]
 [ext_resource type="Texture2D" uid="uid://b1w8ma4swht3k" path="res://icon.svg" id="4_rerw8"]
 [ext_resource type="PackedScene" path="res://src/levels/test_level_01/canvas_layer.tscn" id="5_0bd2f"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jst6l"]
+light_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rerw8"]
+shader = ExtResource("3_rerw8")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yiob1"]
+radius = 44.04543
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7d7xq"]
 light_mode = 2
 
 [sub_resource type="Gradient" id="Gradient_qxx5p"]
 offsets = PackedFloat32Array(0, 0.018072288, 1)
-colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.080459766, 0.080459766, 0.080459766, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.08235294, 0.08235294, 0.08235294, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_87u11"]
 gradient = SubResource("Gradient_qxx5p")
@@ -20,37 +30,18 @@ width = 800
 height = 800
 fill = 1
 fill_from = Vector2(0.49130434, 0.5)
-fill_to = Vector2(0.59130436, 0.40869564)
+fill_to = Vector2(0.7285714, 0.30535713)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yiob1"]
-radius = 44.04543
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f40no"]
+light_mode = 1
 
 [node name="TestLevel02" type="Node2D" unique_id=121122102]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1578938363]
 color = Color(0.16206557, 0.1620656, 0.16206548, 1)
 
-[node name="Player2" parent="." unique_id=974975622 instance=ExtResource("1_is3aj")]
-material = SubResource("CanvasItemMaterial_7d7xq")
-position = Vector2(524, 231)
-ROTATION_SPEED = 1.5
-
-[node name="PointLight2D" type="PointLight2D" parent="Player2" unique_id=794773651]
-energy = 1.5
-texture = SubResource("GradientTexture2D_87u11")
-height = 1024.0
-
-[node name="Camera2D" type="Camera2D" parent="Player2" unique_id=1368984700]
-zoom = Vector2(0.8, 0.8)
-
-[node name="PointLight2D2" type="PointLight2D" parent="Player2" unique_id=358780824 node_paths=PackedStringArray("player")]
-color = Color(1.321, 0.5026362, 0.3472547, 1)
-energy = 2.0
-blend_mode = 2
-script = ExtResource("2_f40no")
-player = NodePath("..")
-
 [node name="WorldBrush" type="Node2D" parent="." unique_id=25729189]
+material = SubResource("CanvasItemMaterial_jst6l")
 script = ExtResource("3_jst6l")
 brush_size = 4
 
@@ -59,8 +50,9 @@ script = ExtResource("4_f40no")
 
 [node name="Icon" type="Sprite2D" parent="Env" unique_id=104670714]
 z_index = -109
+material = SubResource("ShaderMaterial_rerw8")
 position = Vector2(481, 225)
-scale = Vector2(13.3828125, 8.3046875)
+scale = Vector2(250.95311, 140.79688)
 texture = ExtResource("4_rerw8")
 
 [node name="FuelPack" type="Area2D" parent="Env" unique_id=1490841750 groups=["fuel_pack"]]
@@ -90,4 +82,34 @@ collision_mask = 4
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Env/Wall" unique_id=1258004679]
 polygon = PackedVector2Array(654, 491, 814, 418, 1018, 468, 1130, 350, 1038, 192, 852, 152, 746, 41, 559, 51, 338, -37, 147, 124, 86, 442, 317, 725, 617, 841, 640, 912, 542, 919, 236, 793, 3, 457, 63, 111, 331, -82, 556, -17, 808, -21, 906, 87, 1102, 114, 1225, 336, 1079, 526, 830, 486, 691, 550)
 
+[node name="Player2" parent="." unique_id=974975622 instance=ExtResource("1_is3aj")]
+material = SubResource("CanvasItemMaterial_7d7xq")
+position = Vector2(524, 231)
+ROTATION_SPEED = 1.5
+
+[node name="ConeLight" type="PointLight2D" parent="Player2" unique_id=358780824 node_paths=PackedStringArray("player")]
+color = Color(1.0810534, 0.31679213, 0.07077583, 1)
+energy = 30.0
+blend_mode = 2
+script = ExtResource("2_f40no")
+player = NodePath("..")
+
+[node name="YellowLight" type="PointLight2D" parent="Player2/Pivot" parent_id_path=PackedInt32Array(974975622, 759011065) index="0" unique_id=794773651]
+color = Color(1.353256, 0.4057815, 0.10217084, 1)
+energy = 30.0
+texture = SubResource("GradientTexture2D_87u11")
+texture_scale = 0.39
+height = 1024.0
+
+[node name="Sprite2D" parent="Player2/Pivot" parent_id_path=PackedInt32Array(974975622, 759011065) index="1" unique_id=366860962]
+material = SubResource("CanvasItemMaterial_f40no")
+
+[node name="CollisionShape2D" parent="Player2" index="2" unique_id=741166675]
+visible = false
+
+[node name="Camera2D" type="Camera2D" parent="Player2" unique_id=1368984700]
+zoom = Vector2(0.8, 0.8)
+
 [node name="CanvasLayer" parent="." unique_id=835652957 instance=ExtResource("5_0bd2f")]
+
+[editable path="Player2"]
