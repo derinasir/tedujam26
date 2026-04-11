@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dpitryn5wqv4t" path="res://src/player/player2.tscn" id="2_5oo1e"]
 [ext_resource type="Script" uid="uid://i8g6gsn2lx8x" path="res://scripts/ConeGenerator.gd" id="2_qxx5p"]
 [ext_resource type="PackedScene" uid="uid://dyrw6ffojvyly" path="res://src/levels/test_level_01/canvas_layer.tscn" id="5_7d7xq"]
+[ext_resource type="Script" uid="uid://b1cmu7c1hrfp8" path="res://scripts/wireframe.gd" id="5_qxx5p"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7d7xq"]
 light_mode = 2
@@ -70,6 +71,7 @@ scale = Vector2(1, 0.99999994)
 collision_layer = 8
 collision_mask = 0
 monitoring = false
+script = ExtResource("5_qxx5p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Env/FuelPack" unique_id=1207640000]
 shape = SubResource("CircleShape2D_yiob1")
@@ -89,6 +91,8 @@ position = Vector2(1094, 202)
 scale = Vector2(1, 0.99999994)
 collision_layer = 9
 collision_mask = 4
+script = ExtResource("5_qxx5p")
+color = Color(0.68579745, 0, 0.16710895, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Env/Wall" unique_id=1467301564]
 shape = SubResource("RectangleShape2D_yiob1")

@@ -6,27 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="845c2ece-0240-4901-8e6f-5419068706de" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.new_project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.new_project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/PaintableThings/DrawOnSprite.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/PaintableThings/DrawOnSprite.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/PaintableThings/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/PaintableThings/WorldPainter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/PaintableThings/WorldPainter.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/PaintableThings/paintable_sprite.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/PaintableThings/paintable_sprite.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/PaintableThings/world_brush.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/PaintableThings/world_brush.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Paintafuckingpixel.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/Paintafuckingpixel.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/SonarSystem.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/SonarSystem.cs.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/WorldDrawLayer.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/WorldDrawLayer.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/drawing_canvas.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/drawing_canvas.gd.uid" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/main.gd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/main.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/wireframe.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/wireframe.gd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/levels/test_level_01/test_level_02.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/test_level_01/test_level_02.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/player.gd" beforeDir="false" afterPath="$PROJECT_DIR$/src/player/player.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/player2.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/src/player/player2.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
