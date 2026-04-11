@@ -8,3 +8,4 @@ signal pause_requested(should_pause: bool)
 signal sonar_detected(group_name: String, stream: AudioStream, priority: int)
 signal wall_friction_started(global_pos: Vector2, normal: Vector2, direction: Vector2)
 signal wall_friction_ended
+signal request_draw_dot(positions: Array[Vector2])

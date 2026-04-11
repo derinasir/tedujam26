@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://25rlii7lfixo"]
+[gd_scene format=3 uid="uid://dpitryn5wqv4t"]
 
 [ext_resource type="Script" uid="uid://bo4h7b8pb0fn3" path="res://src/player/player.gd" id="1_irso5"]
 [ext_resource type="Texture2D" uid="uid://bu5tompxkvxyj" path="res://Assets/submarine.png" id="2_irso5"]
@@ -25,9 +25,10 @@ texture = ExtResource("2_irso5")
 rotation = 1.5707964
 script = ExtResource("3_gg568")
 spread_angle = 60.0
-ray_length = 150.0
+ray_length = 225.0
 sfx_sonar_ping = ExtResource("4_bpn8n")
 sfx_void = ExtResource("5_03rh0")
+cooldown_time = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741166675]
 rotation = 1.5707964

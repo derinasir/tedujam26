@@ -89,16 +89,13 @@ func execute_sonar() -> void:
 				detected_objects.append(object)
 
 		ray.target_position = original_pos
-
-	queue_redraw()
+	GameEvents.request_draw_dot.emit(hitpoints)
+	hitpoints.clear()
 	start_cooldown()
 
 	await get_tree().create_timer(feedback_delay).timeout
 	process_detected_objects(detected_objects)
 
-func _draw() -> void:
-	for hit: Vector2 in hitpoints:
-		draw_circle(to_local(hit), 10.0, Color.WHITE)
 	
 func start_cooldown() -> void:
 	await get_tree().create_timer(cooldown_time).timeout
