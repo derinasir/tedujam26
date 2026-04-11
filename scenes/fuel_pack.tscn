@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cab2856an4j5w"]
+
+[ext_resource type="Texture2D" uid="uid://digx6ckjipe8o" path="res://Assets/fueloff.png" id="1_jb06s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yiob1"]
+radius = 44.04543
+
+[node name="FuelPack" type="Area2D" unique_id=1122233973 groups=["fuel_pack"]]
+scale = Vector2(1, 0.99999994)
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=900430348]
+shape = SubResource("CircleShape2D_yiob1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1362700399]
+position = Vector2(-4.6014786e-05, 3.0994415e-06)
+scale = Vector2(3, 3)
+texture = ExtResource("1_jb06s")

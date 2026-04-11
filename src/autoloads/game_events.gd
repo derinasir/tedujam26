@@ -12,3 +12,4 @@ signal request_draw_dot(sonar_dots: Array[SonarDot])
 signal player_hurt
 signal player_energy_changed
 signal player_oxygen_changed
+signal player_picked_fuel
