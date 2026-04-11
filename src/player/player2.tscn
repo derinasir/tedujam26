@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bu5tompxkvxyj" path="res://Assets/submarine.png" id="2_irso5"]
 [ext_resource type="Script" uid="uid://dhdsg1eo8htc3" path="res://src/player/sonar.gd" id="3_gg568"]
 [ext_resource type="AudioStream" uid="uid://bd4u0t0j2g86b" path="res://src/player/audio/sonar ana.mp3" id="4_bpn8n"]
-[ext_resource type="AudioStream" uid="uid://b7hf1fnjrdft3" path="res://src/player/audio/sonar boşluk.wav" id="5_03rh0"]
+[ext_resource type="AudioStream" uid="uid://b7hf1fnjrdft3" path="res://src/player/audio/sonar duvar.wav" id="5_03rh0"]
+[ext_resource type="AudioStream" uid="uid://c7jahenp7f6kw" path="res://src/player/audio/sonar yakıt.mp3" id="5_s1y7p"]
 [ext_resource type="AudioStream" uid="uid://c126sflinenn7" path="res://src/player/audio/thrust ses.mp3" id="6_t1ns4"]
+[ext_resource type="AudioStream" uid="uid://ctstaf7y8arle" path="res://src/player/audio/sonar bosluk.mp3" id="7_gg568"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_irso5"]
 radius = 39.623226
@@ -27,7 +29,9 @@ script = ExtResource("3_gg568")
 spread_angle = 60.0
 ray_length = 225.0
 sfx_sonar_ping = ExtResource("4_bpn8n")
-sfx_void = ExtResource("5_03rh0")
+sfx_fuel = ExtResource("5_s1y7p")
+sfx_wall = ExtResource("5_03rh0")
+sfx_void = ExtResource("7_gg568")
 cooldown_time = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741166675]

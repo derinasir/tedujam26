@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b7hf1fnjrdft3"
-path="res://.godot/imported/sonar boşluk.wav-651ec478aa3c82497786abf2ab3f964f.sample"
+path="res://.godot/imported/sonar duvar.wav-f9ae073aa5db05c8ace1fa2f9b7b4cbd.sample"
 
 [deps]
 
-source_file="res://src/player/audio/sonar boşluk.wav"
-dest_files=["res://.godot/imported/sonar boşluk.wav-651ec478aa3c82497786abf2ab3f964f.sample"]
+source_file="res://src/player/audio/sonar duvar.wav"
+dest_files=["res://.godot/imported/sonar duvar.wav-f9ae073aa5db05c8ace1fa2f9b7b4cbd.sample"]
 
 [params]
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7jahenp7f6kw"
+path="res://.godot/imported/sonar yakıt.mp3-9c1a9868c78267e928a56e0a0cc5b314.mp3str"
+
+[deps]
+
+source_file="res://src/player/audio/sonar yakıt.mp3"
+dest_files=["res://.godot/imported/sonar yakıt.mp3-9c1a9868c78267e928a56e0a0cc5b314.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
