@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b1cmu7c1hrfp8" path="res://scripts/wireframe.gd" id="4_f40no"]
 [ext_resource type="Texture2D" uid="uid://b1w8ma4swht3k" path="res://icon.svg" id="4_rerw8"]
 [ext_resource type="PackedScene" path="res://src/levels/test_level_01/canvas_layer.tscn" id="5_0bd2f"]
+[ext_resource type="Script" uid="uid://bx5l8y17lq1po" path="res://src/levels/test_level_04/particle_manager.gd" id="8_rerw8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jst6l"]
 light_mode = 1
@@ -111,5 +112,8 @@ visible = false
 zoom = Vector2(0.8, 0.8)
 
 [node name="CanvasLayer" parent="." unique_id=835652957 instance=ExtResource("5_0bd2f")]
+
+[node name="ParticleManager" type="Node2D" parent="." unique_id=1192752574]
+script = ExtResource("8_rerw8")
 
 [editable path="Player2"]
