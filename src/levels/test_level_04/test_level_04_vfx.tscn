@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://6sjys5dwo2jp"]
 
-[ext_resource type="PackedScene" uid="uid://25rlii7lfixo" path="res://src/player/player2.tscn" id="1_r6vsy"]
+[ext_resource type="PackedScene" uid="uid://dpitryn5wqv4t" path="res://src/player/player2.tscn" id="1_r6vsy"]
 [ext_resource type="Script" uid="uid://i8g6gsn2lx8x" path="res://scripts/ConeGenerator.gd" id="2_c022s"]
 [ext_resource type="Script" uid="uid://e3qcsicy6g7a" path="res://scripts/WorldDrawLayer.gd" id="3_sbb50"]
 [ext_resource type="Texture2D" uid="uid://b1w8ma4swht3k" path="res://icon.svg" id="4_rsn6e"]
-[ext_resource type="PackedScene" path="res://src/levels/test_level_01/canvas_layer.tscn" id="5_ncrpn"]
+[ext_resource type="PackedScene" uid="uid://f11pn7xc7uju" path="res://src/ui/Healthbar.tscn" id="5_c022s"]
+[ext_resource type="Script" uid="uid://dbkvpmy5mcd1r" path="res://src/ui/healthbar.gd" id="6_sbb50"]
 [ext_resource type="Script" uid="uid://bx5l8y17lq1po" path="res://src/levels/test_level_04/particle_manager.gd" id="7_c022s"]
+[ext_resource type="Script" uid="uid://cs5nrqeht7fll" path="res://src/ui/energybar.gd" id="7_sbb50"]
+[ext_resource type="Script" uid="uid://44syxd3u13t4" path="res://src/ui/oxygenbar.gd" id="8_rsn6e"]
+[ext_resource type="Script" uid="uid://dlirs6pnbb5o0" path="res://scripts/timer.gd" id="10_ncrpn"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7d7xq"]
 light_mode = 2
@@ -24,6 +28,30 @@ fill_to = Vector2(0.59130436, 0.40869564)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yiob1"]
 radius = 44.04543
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1kv3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dkj1"]
+bg_color = Color(0.5238465, 0.013717553, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrnf3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvfs7"]
+bg_color = Color(0.13725491, 0.34901962, 0.15294118, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 
 [node name="TestLevel04" type="Node2D" unique_id=121122102]
 
@@ -89,7 +117,62 @@ collision_mask = 4
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Env/Wall" unique_id=1258004679]
 polygon = PackedVector2Array(654, 491, 814, 418, 1018, 468, 1130, 350, 1038, 192, 852, 152, 746, 41, 559, 51, 338, -37, 147, 124, 86, 442, 317, 725, 617, 841, 640, 912, 542, 919, 236, 793, 3, 457, 63, 111, 331, -82, 556, -17, 808, -21, 906, 87, 1102, 114, 1225, 336, 1079, 526, 830, 486, 691, 550)
 
-[node name="CanvasLayer" parent="." unique_id=835652957 instance=ExtResource("5_ncrpn")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=835652957]
+
+[node name="HealthBar" parent="CanvasLayer" unique_id=1780067964 node_paths=PackedStringArray("player") instance=ExtResource("5_c022s")]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 439.0
+offset_bottom = -3.8146973e-06
+theme_override_styles/background = SubResource("StyleBoxFlat_i1kv3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0dkj1")
+value = 100.0
+script = ExtResource("6_sbb50")
+player = NodePath("../../Player2")
+
+[node name="EnergyBar" type="ProgressBar" parent="CanvasLayer" unique_id=1993853112 node_paths=PackedStringArray("player")]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -45.0
+offset_right = 439.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_lrnf3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wvfs7")
+value = 27.75
+script = ExtResource("7_sbb50")
+player = NodePath("../../Player2")
+
+[node name="OxygenBar" type="ProgressBar" parent="CanvasLayer" unique_id=702804270 node_paths=PackedStringArray("player")]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -209.5
+offset_right = -20.0
+offset_bottom = 209.5
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+value = 43.7
+fill_mode = 3
+script = ExtResource("8_rsn6e")
+player = NodePath("../../Player2")
 
 [node name="ParticleManager" type="Node2D" parent="." unique_id=1112333851]
 script = ExtResource("7_c022s")
+
+[node name="OxygenTimer" type="Timer" parent="." unique_id=991075733]
+autostart = true
+script = ExtResource("10_ncrpn")
+
+[connection signal="timeout" from="OxygenTimer" to="Player2" method="_on_oxygen_timer_timeout"]

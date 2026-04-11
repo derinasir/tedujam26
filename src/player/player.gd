@@ -13,8 +13,14 @@ const VELOCITY_CAP: float = 400.0
 @export var ROTATION_SPEED: float = 10.0
 @export var THRUST_FADE_SPEED: float = 5.0
 @export var maxHealth: float = 100.0
+@export var damageFromWallFriction: float = 10.0
+@export var maxEnergy: float = 100.0
+@export var energyConsumptionRate: float = 20.0
+@export var maxOxygen: float = 100.0
 
+var energy: float
 var health: float
+var oxygen: float
 var is_thruster_on: bool = false
 var is_fricting_walls: bool = false
 var last_input_direction: Vector2 = Vector2.UP
@@ -25,6 +31,8 @@ var last_input_direction: Vector2 = Vector2.UP
 
 func _ready() -> void:
 	health = maxHealth
+	energy = maxEnergy
+	oxygen = maxOxygen
 
 
 func _process(_delta: float) -> void:
@@ -66,6 +74,10 @@ func handle_movement(input_dir: float, delta: float) -> void:
 
 		if not is_thruster_on:
 			velocity = velocity.limit_length(VELOCITY_CAP)
+		else:
+			print("energydecreasebrowtf")
+			energy -= energyConsumptionRate * delta
+			GameEvents.player_energy_changed.emit()
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FORCE * FRICTION * delta)
 
@@ -132,10 +144,20 @@ func handle_wall_friction(_delta: float) -> void:
 		GameEvents.wall_friction_ended.emit()
 
 	is_fricting_walls = current_friction_state
+	if is_fricting_walls:
+		get_hurt(damageFromWallFriction)
 
 
 func get_hurt(damage: float) -> void:
 	health -= damage
 	if health <= 0:
 		GameEvents.player_died.emit()
-	pass
+		pass
+	GameEvents.player_hurt.emit()
+
+
+
+func _on_oxygen_timer_timeout() -> void:
+	oxygen -= 1
+	GameEvents.player_oxygen_changed.emit()
+	pass # Replace with function body.
