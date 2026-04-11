@@ -88,13 +88,6 @@ material = SubResource("CanvasItemMaterial_7d7xq")
 position = Vector2(524, 231)
 ROTATION_SPEED = 1.5
 
-[node name="ConeLight" type="PointLight2D" parent="Player2" unique_id=358780824 node_paths=PackedStringArray("player")]
-color = Color(1.0810534, 0.31679213, 0.07077583, 1)
-energy = 30.0
-blend_mode = 2
-script = ExtResource("2_f40no")
-player = NodePath("..")
-
 [node name="YellowLight" type="PointLight2D" parent="Player2/Pivot" parent_id_path=PackedInt32Array(974975622, 759011065) index="0" unique_id=794773651]
 color = Color(1.353256, 0.4057815, 0.10217084, 1)
 energy = 30.0
@@ -107,6 +100,13 @@ material = SubResource("CanvasItemMaterial_f40no")
 
 [node name="CollisionShape2D" parent="Player2" index="2" unique_id=741166675]
 visible = false
+
+[node name="ConeLight" type="PointLight2D" parent="Player2" unique_id=358780824 node_paths=PackedStringArray("player")]
+color = Color(1.0810534, 0.31679213, 0.07077583, 1)
+energy = 30.0
+blend_mode = 2
+script = ExtResource("2_f40no")
+player = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="Player2" unique_id=1368984700]
 zoom = Vector2(0.8, 0.8)
