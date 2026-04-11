@@ -1,7 +1,7 @@
 extends Node2D
 
-var hitpoints: Array = []
-var hitpoints_changed: bool = false
+var dots_changed: bool = false
+var _sonar_dots: Array[SonarDot] = []
 
 
 func _ready() -> void:
@@ -9,19 +9,32 @@ func _ready() -> void:
 
 
 func _draw():
-	if hitpoints_changed:
-		for hit: Vector2 in hitpoints:
-			draw_circle(to_local(hit), 5.0, Color.WHITE)
-			print(to_local(hit), "asdasddasdas", hit)
-
-	hitpoints_changed = false
+	if dots_changed:
+		for dot: SonarDot in _sonar_dots:
+			draw_circle(to_local(dot.global_position), 5.0, dot.color)
+	dots_changed = false
 
 
-func _on_request_draw_dots(positions: Array[Vector2]):
-	hitpoints = positions
-	hitpoints_changed = true
+func match_group_color(group_name: String) -> Color:
+	var color: Color
+	match group_name:
+		"fuel_pack":
+			color = Color.YELLOW
+		"enemy":
+			color = Color.DARK_RED
+		"wall":
+			color = Color.BROWN
+		"void":
+			color = Color(Color.BLACK, 0.0)
+		_:
+			color = Color.WHITE
+
+	return color
+
+
+func _on_request_draw_dots(sonar_dots: Array[SonarDot]):
+	for dot in sonar_dots:
+		dot.color = match_group_color(dot.group)
+	_sonar_dots = sonar_dots.duplicate()
+	dots_changed = true
 	queue_redraw()
-
-
-func _fade_out_dot(dots: Array[Vector2]):
-	pass

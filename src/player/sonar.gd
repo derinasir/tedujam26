@@ -14,7 +14,7 @@ extends Node2D
 @export var feedback_delay: float = 0.5
 @export var cooldown_time: float = 4.0
 
-var hitpoints: Array[Vector2] = []
+var sonar_dots: Array[SonarDot] = []
 var _can_sonar: bool = true
 
 
@@ -77,17 +77,19 @@ func execute_sonar() -> void:
 
 		if ray.is_colliding():
 			var object := ray.get_collider()
-			hitpoints.append(ray.get_collision_point())
+			var new_dot = SonarDot.new(ray.get_collision_point(), object.get_groups()[0])
+			sonar_dots.append(new_dot)
 			if not detected_objects.has(object):
 				detected_objects.append(object)
 
 		ray.target_position = original_pos
-	GameEvents.request_draw_dot.emit(hitpoints)
-	hitpoints.clear()
-	start_cooldown()
 
+	start_cooldown()
 	await get_tree().create_timer(feedback_delay).timeout
 	process_detected_objects(detected_objects)
+
+	GameEvents.request_draw_dot.emit(sonar_dots)
+	sonar_dots.clear()
 
 
 func start_cooldown() -> void:
