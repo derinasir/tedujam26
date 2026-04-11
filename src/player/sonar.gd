@@ -55,7 +55,7 @@ func create_rays() -> void:
 		ray.collide_with_areas = true
 		add_child(ray)
 
-
+var hitpoints: Array[Vector2] = []
 func execute_sonar() -> void:
 	_can_sonar = false
 
@@ -83,18 +83,23 @@ func execute_sonar() -> void:
 		ray.force_raycast_update()
 
 		if ray.is_colliding():
-			var object = ray.get_collider()
+			var object := ray.get_collider()
+			hitpoints.append(ray.get_collision_point())
 			if not detected_objects.has(object):
 				detected_objects.append(object)
 
 		ray.target_position = original_pos
 
+	queue_redraw()
 	start_cooldown()
 
 	await get_tree().create_timer(feedback_delay).timeout
 	process_detected_objects(detected_objects)
 
-
+func _draw() -> void:
+	for hit: Vector2 in hitpoints:
+		draw_circle(to_local(hit), 10.0, Color.WHITE)
+	
 func start_cooldown() -> void:
 	await get_tree().create_timer(cooldown_time).timeout
 	_can_sonar = true

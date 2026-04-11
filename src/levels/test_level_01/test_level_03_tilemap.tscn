@@ -1,10 +1,11 @@
-[gd_scene format=3 uid="uid://drknq62nnh7nb"]
+[gd_scene format=3 uid="uid://r66wywihg2l2"]
 
-[ext_resource type="PackedScene" path="res://src/player/player2.tscn" id="1_is3aj"]
+[ext_resource type="PackedScene" uid="uid://dpitryn5wqv4t" path="res://src/player/player2.tscn" id="1_is3aj"]
 [ext_resource type="Script" uid="uid://i8g6gsn2lx8x" path="res://scripts/ConeGenerator.gd" id="2_f40no"]
 [ext_resource type="Script" uid="uid://e3qcsicy6g7a" path="res://scripts/WorldDrawLayer.gd" id="3_jst6l"]
+[ext_resource type="Script" uid="uid://b1cmu7c1hrfp8" path="res://scripts/wireframe.gd" id="4_f40no"]
 [ext_resource type="Texture2D" uid="uid://b1w8ma4swht3k" path="res://icon.svg" id="4_rerw8"]
-[ext_resource type="PackedScene" path="res://src/levels/test_level_01/canvas_layer.tscn" id="5_0bd2f"]
+[ext_resource type="PackedScene" uid="uid://dyrw6ffojvyly" path="res://src/levels/test_level_01/canvas_layer.tscn" id="5_0bd2f"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7d7xq"]
 light_mode = 2
@@ -49,11 +50,12 @@ blend_mode = 2
 script = ExtResource("2_f40no")
 player = NodePath("..")
 
-[node name="Node2D" type="Node2D" parent="." unique_id=25729189]
+[node name="WorldBrush" type="Node2D" parent="." unique_id=25729189]
 script = ExtResource("3_jst6l")
 brush_size = 4
 
 [node name="Env" type="Node2D" parent="." unique_id=735130590]
+script = ExtResource("4_f40no")
 
 [node name="Icon" type="Sprite2D" parent="Env" unique_id=104670714]
 z_index = -109
