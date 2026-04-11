@@ -3,8 +3,23 @@
 [ext_resource type="Script" uid="uid://e3qcsicy6g7a" path="res://scripts/WorldDrawLayer.gd" id="1_2rgtv"]
 [ext_resource type="Texture2D" uid="uid://b1w8ma4swht3k" path="res://icon.svg" id="1_5oo1e"]
 [ext_resource type="PackedScene" uid="uid://dpitryn5wqv4t" path="res://src/player/player2.tscn" id="2_5oo1e"]
-[ext_resource type="PackedScene" uid="uid://f11pn7xc7uju" path="res://src/ui/Healthbar.tscn" id="4_heqty"]
-[ext_resource type="Script" uid="uid://dbkvpmy5mcd1r" path="res://src/ui/healthbar.gd" id="5_7d7xq"]
+[ext_resource type="Script" uid="uid://i8g6gsn2lx8x" path="res://scripts/ConeGenerator.gd" id="2_qxx5p"]
+[ext_resource type="PackedScene" uid="uid://dyrw6ffojvyly" path="res://src/levels/test_level_01/canvas_layer.tscn" id="5_7d7xq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7d7xq"]
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_qxx5p"]
+offsets = PackedFloat32Array(0, 0.018072288, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.080459766, 0.080459766, 0.080459766, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_87u11"]
+gradient = SubResource("Gradient_qxx5p")
+width = 800
+height = 800
+fill = 1
+fill_from = Vector2(0.49130434, 0.5)
+fill_to = Vector2(0.59130436, 0.40869564)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yiob1"]
 radius = 44.04543
@@ -14,16 +29,39 @@ size = Vector2(40, 500)
 
 [node name="TestLevel02" type="Node2D" unique_id=121122102]
 
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1578938363]
+color = Color(0.16206557, 0.1620656, 0.16206548, 1)
+
+[node name="Player2" parent="." unique_id=974975622 instance=ExtResource("2_5oo1e")]
+material = SubResource("CanvasItemMaterial_7d7xq")
+position = Vector2(524, 231)
+ROTATION_SPEED = 1.5
+
+[node name="PointLight2D" type="PointLight2D" parent="Player2" unique_id=794773651]
+energy = 1.5
+texture = SubResource("GradientTexture2D_87u11")
+height = 1024.0
+
+[node name="Camera2D" type="Camera2D" parent="Player2" unique_id=1368984700]
+zoom = Vector2(0.8, 0.8)
+
+[node name="PointLight2D2" type="PointLight2D" parent="Player2" unique_id=358780824 node_paths=PackedStringArray("player")]
+color = Color(1.321, 0.5026362, 0.3472547, 1)
+energy = 2.0
+blend_mode = 2
+script = ExtResource("2_qxx5p")
+player = NodePath("..")
+
 [node name="Node2D" type="Node2D" parent="." unique_id=25729189]
 script = ExtResource("1_2rgtv")
 brush_size = 4
 
 [node name="Env" type="Node2D" parent="." unique_id=735130590]
 
-[node name="Icon" type="Sprite2D" parent="Env" unique_id=999880496]
-modulate = Color(1, 1, 1, 0.14117648)
-position = Vector2(396, 161.00002)
-scale = Vector2(45.359375, 23.5)
+[node name="Icon" type="Sprite2D" parent="Env" unique_id=104670714]
+z_index = -109
+position = Vector2(481, 225)
+scale = Vector2(13.3828125, 8.3046875)
 texture = ExtResource("1_5oo1e")
 
 [node name="FuelPack" type="Area2D" parent="Env" unique_id=1490841750 groups=["fuel_pack"]]
@@ -55,21 +93,4 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Env/Wall" unique_id=1467301564]
 shape = SubResource("RectangleShape2D_yiob1")
 
-[node name="Player2" parent="." unique_id=974975622 instance=ExtResource("2_5oo1e")]
-position = Vector2(524, 231)
-scale = Vector2(3, 3)
-
-[node name="Camera2D" type="Camera2D" parent="Player2" unique_id=1368984700]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1514247800]
-
-[node name="ProgressBar" parent="CanvasLayer" unique_id=1780067964 node_paths=PackedStringArray("player") instance=ExtResource("4_heqty")]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 439.0
-value = 100.0
-script = ExtResource("5_7d7xq")
-player = NodePath("../../Player2")
-
-[connection signal="wall_friction_ended" from="Player2" to="CanvasLayer/ProgressBar" method="_on_player_2_wall_friction_ended"]
-[connection signal="wall_friction_started" from="Player2" to="CanvasLayer/ProgressBar" method="_on_player_2_wall_friction_started"]
+[node name="CanvasLayer" parent="." unique_id=835652957 instance=ExtResource("5_7d7xq")]

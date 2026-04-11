@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c126sflinenn7" path="res://src/player/audio/thrust ses.mp3" id="6_t1ns4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_irso5"]
-radius = 20.0
+radius = 39.623226
 
 [node name="Player" type="CharacterBody2D" unique_id=974975622]
 collision_layer = 4
@@ -19,7 +19,6 @@ script = ExtResource("1_irso5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=366860962]
 rotation = 1.5707964
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_irso5")
 
 [node name="Sonar" type="Node2D" parent="Pivot" unique_id=1442189664]

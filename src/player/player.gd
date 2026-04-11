@@ -21,7 +21,7 @@ var health: float
 
 var is_thruster_on: bool = false
 var is_fricting_walls: bool = false
-var _last_input_direction: Vector2 = Vector2.UP
+var last_input_direction: Vector2 = Vector2.UP
 
 @onready var pivot: Node2D = $Pivot
 @onready var thrust_player: AudioStreamPlayer = $ThrustAudioPlayer
@@ -35,29 +35,36 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var input_dir = Input.get_vector(
-		"move_left",
-		"move_right",
-		"move_up",
-		"move_down",
-	)
+	# var input_dir = Input.get_vector(
+	# 	"move_left",
+	# 	"move_right",
+	# 	"move_up",
+	# 	"move_down",
+	# )
+	var horizontal_input: float = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	var vertical_input: float = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 
-	handle_movement(input_dir, delta)
-	handle_rotation(input_dir, delta)
+	# handle_movement(input_dir, delta)
+	# handle_rotation(input_dir, delta)
+	handle_movement(vertical_input, delta)
+	handle_rotation(horizontal_input, delta)
 	handle_thrust_audio(delta)
 
 	move_and_slide()
 	handle_wall_friction(delta)
 
+func handle_movement(input_dir: float, delta: float) -> void:
+	# Push along whichever way the pivot is currently facing
+	var facing := Vector2.RIGHT.rotated(pivot.rotation)
 
-func handle_movement(input_dir: Vector2, delta: float) -> void:
-	if input_dir != Vector2.ZERO:
-		var final_force = THRUSTER_FORCE if is_thruster_on else FORCE
+	if input_dir != 0:
+		var final_force := THRUSTER_FORCE if is_thruster_on else FORCE
+		var move_vec := (facing * input_dir) * -1
 
-		if velocity.length() > 0 and input_dir.dot(velocity.normalized()) < 0:
+		if velocity.length() > 0 and move_vec.dot(velocity.normalized()) < 0:
 			velocity = velocity.move_toward(Vector2.ZERO, final_force * BRAKE_FORCE * delta)
 
-		velocity += input_dir * final_force * delta
+		velocity += move_vec * final_force * delta
 
 		if not is_thruster_on:
 			velocity = velocity.limit_length(VELOCITY_CAP)
@@ -65,12 +72,30 @@ func handle_movement(input_dir: Vector2, delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, FORCE * FRICTION * delta)
 
 
-func handle_rotation(input_dir: Vector2, delta: float) -> void:
-	if input_dir != Vector2.ZERO:
-		_last_input_direction = input_dir
+func handle_rotation(input_dir: float, delta: float) -> void:
+	pivot.rotation += input_dir * ROTATION_SPEED * delta
 
-	var target_angle = _last_input_direction.angle()
-	pivot.rotation = lerp_angle(pivot.rotation, target_angle, ROTATION_SPEED * delta)
+# func handle_movement(input_dir: Vector2, delta: float) -> void:
+# 	if input_dir != Vector2.ZERO:
+# 		var final_force = THRUSTER_FORCE if is_thruster_on else FORCE
+# 
+# 		if velocity.length() > 0 and input_dir.dot(velocity.normalized()) < 0:
+# 			velocity = velocity.move_toward(Vector2.ZERO, final_force * BRAKE_FORCE * delta)
+# 
+# 		velocity += input_dir * final_force * delta
+# 
+# 		if not is_thruster_on:
+# 			velocity = velocity.limit_length(VELOCITY_CAP)
+# 	else:
+# 		velocity = velocity.move_toward(Vector2.ZERO, FORCE * FRICTION * delta)
+
+
+# func handle_rotation(input_dir: Vector2, delta: float) -> void:
+# 	if input_dir != Vector2.ZERO:
+# 		last_input_direction = input_dir
+# 
+# 	var target_angle = last_input_direction.angle()
+# 	pivot.rotation = lerp_angle(pivot.rotation, target_angle, ROTATION_SPEED * delta)
 
 
 func handle_thrust_audio(delta: float) -> void:
