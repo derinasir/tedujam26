@@ -1,26 +1,27 @@
-[gd_scene format=3 uid="uid://r66wywihg2l2"]
+[gd_scene format=3 uid="uid://crvloydcfi0hp"]
 
-[ext_resource type="PackedScene" uid="uid://dpitryn5wqv4t" path="res://src/player/player2.tscn" id="1_is3aj"]
-[ext_resource type="Script" uid="uid://i8g6gsn2lx8x" path="res://scripts/ConeGenerator.gd" id="2_f40no"]
-[ext_resource type="Script" uid="uid://e3qcsicy6g7a" path="res://scripts/WorldDrawLayer.gd" id="3_jst6l"]
-[ext_resource type="Shader" path="res://src/levels/test_level_01/icon.gdshader" id="3_rerw8"]
-[ext_resource type="Script" uid="uid://b1cmu7c1hrfp8" path="res://scripts/wireframe.gd" id="4_f40no"]
-[ext_resource type="Texture2D" uid="uid://b1w8ma4swht3k" path="res://icon.svg" id="4_rerw8"]
-[ext_resource type="PackedScene" uid="uid://f11pn7xc7uju" path="res://src/ui/Healthbar.tscn" id="6_jst6l"]
-[ext_resource type="Script" uid="uid://dbkvpmy5mcd1r" path="res://src/ui/healthbar.gd" id="7_rerw8"]
-[ext_resource type="Script" uid="uid://bx5l8y17lq1po" path="res://src/levels/test_level_04/particle_manager.gd" id="8_rerw8"]
-[ext_resource type="Texture2D" uid="uid://c6vtwn5iyym3g" path="res://src/ui/health_icon.png" id="9_ciekv"]
-[ext_resource type="Script" uid="uid://cs5nrqeht7fll" path="res://src/ui/energybar.gd" id="9_l31on"]
-[ext_resource type="FontFile" uid="uid://bxg64aq3t6bvj" path="res://src/ui/Dico.ttf" id="10_7wygf"]
-[ext_resource type="Script" uid="uid://44syxd3u13t4" path="res://src/ui/oxygenbar.gd" id="10_lhwjq"]
-[ext_resource type="Texture2D" uid="uid://bpj30yabums5p" path="res://src/ui/energy_icon.png" id="12_8mfbs"]
-[ext_resource type="Texture2D" uid="uid://cvg7832jf7rao" path="res://src/ui/oxygen_icon.png" id="14_hllwx"]
+[ext_resource type="Script" uid="uid://e3qcsicy6g7a" path="res://scripts/WorldDrawLayer.gd" id="1_yv6qr"]
+[ext_resource type="Script" uid="uid://b1cmu7c1hrfp8" path="res://scripts/wireframe.gd" id="2_mwwhy"]
+[ext_resource type="Shader" path="res://src/levels/test_level_01/icon.gdshader" id="3_1jxtq"]
+[ext_resource type="Texture2D" uid="uid://b1w8ma4swht3k" path="res://icon.svg" id="4_12ru0"]
+[ext_resource type="PackedScene" uid="uid://dpitryn5wqv4t" path="res://src/player/player2.tscn" id="5_xr4t8"]
+[ext_resource type="Script" uid="uid://i8g6gsn2lx8x" path="res://scripts/ConeGenerator.gd" id="6_iygne"]
+[ext_resource type="PackedScene" uid="uid://f11pn7xc7uju" path="res://src/ui/Healthbar.tscn" id="7_n0iba"]
+[ext_resource type="Script" uid="uid://dbkvpmy5mcd1r" path="res://src/ui/healthbar.gd" id="8_s8mp2"]
+[ext_resource type="Texture2D" uid="uid://c6vtwn5iyym3g" path="res://src/ui/health_icon.png" id="9_6gch1"]
+[ext_resource type="FontFile" uid="uid://bxg64aq3t6bvj" path="res://src/ui/Dico.ttf" id="10_n6h2n"]
+[ext_resource type="Script" uid="uid://cs5nrqeht7fll" path="res://src/ui/energybar.gd" id="11_2o1u2"]
+[ext_resource type="Texture2D" uid="uid://bpj30yabums5p" path="res://src/ui/energy_icon.png" id="12_x5kok"]
+[ext_resource type="Script" uid="uid://44syxd3u13t4" path="res://src/ui/oxygenbar.gd" id="13_46rpi"]
+[ext_resource type="Texture2D" uid="uid://cvg7832jf7rao" path="res://src/ui/oxygen_icon.png" id="14_cr4q7"]
+[ext_resource type="Script" uid="uid://bx5l8y17lq1po" path="res://src/levels/test_level_04/particle_manager.gd" id="15_241cq"]
+[ext_resource type="Script" uid="uid://dlirs6pnbb5o0" path="res://scripts/timer.gd" id="16_mwwhy"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jst6l"]
 light_mode = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rerw8"]
-shader = ExtResource("3_rerw8")
+shader = ExtResource("3_1jxtq")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yiob1"]
 radius = 44.04543
@@ -74,18 +75,18 @@ color = Color(0.16206557, 0.1620656, 0.16206548, 1)
 
 [node name="WorldBrush" type="Node2D" parent="." unique_id=25729189]
 material = SubResource("CanvasItemMaterial_jst6l")
-script = ExtResource("3_jst6l")
+script = ExtResource("1_yv6qr")
 brush_size = 4
 
 [node name="Env" type="Node2D" parent="." unique_id=735130590]
-script = ExtResource("4_f40no")
+script = ExtResource("2_mwwhy")
 
 [node name="Icon" type="Sprite2D" parent="Env" unique_id=104670714]
 z_index = -109
 material = SubResource("ShaderMaterial_rerw8")
 position = Vector2(481, 225)
 scale = Vector2(250.95311, 140.79688)
-texture = ExtResource("4_rerw8")
+texture = ExtResource("4_12ru0")
 
 [node name="FuelPack" type="Area2D" parent="Env" unique_id=1490841750 groups=["fuel_pack"]]
 position = Vector2(996.00006, 338)
@@ -114,7 +115,7 @@ collision_mask = 4
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Env/Wall" unique_id=1258004679]
 polygon = PackedVector2Array(654, 491, 814, 418, 1018, 468, 1130, 350, 1038, 192, 852, 152, 746, 41, 559, 51, 338, -37, 147, 124, 86, 442, 317, 725, 617, 841, 640, 912, 542, 919, 236, 793, 3, 457, 63, 111, 331, -82, 556, -17, 808, -21, 906, 87, 1102, 114, 1225, 336, 1079, 526, 830, 486, 691, 550)
 
-[node name="Player2" parent="." unique_id=974975622 instance=ExtResource("1_is3aj")]
+[node name="Player2" parent="." unique_id=974975622 instance=ExtResource("5_xr4t8")]
 material = SubResource("CanvasItemMaterial_7d7xq")
 position = Vector2(524, 231)
 ROTATION_SPEED = 1.5
@@ -136,7 +137,7 @@ visible = false
 color = Color(1.0810534, 0.31679213, 0.07077583, 1)
 energy = 30.0
 blend_mode = 2
-script = ExtResource("2_f40no")
+script = ExtResource("6_iygne")
 player = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="Player2" unique_id=1368984700]
@@ -144,7 +145,7 @@ zoom = Vector2(0.8, 0.8)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=835652957]
 
-[node name="HealthBar" parent="CanvasLayer" unique_id=1780067964 node_paths=PackedStringArray("player") instance=ExtResource("6_jst6l")]
+[node name="HealthBar" parent="CanvasLayer" unique_id=1780067964 node_paths=PackedStringArray("player") instance=ExtResource("7_n0iba")]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -157,7 +158,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_57vjf")
 theme_override_styles/fill = SubResource("StyleBoxFlat_k2w3a")
 value = 100.0
 show_percentage = false
-script = ExtResource("7_rerw8")
+script = ExtResource("8_s8mp2")
 player = NodePath("../../Player2")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/HealthBar" unique_id=546398676]
@@ -173,7 +174,7 @@ offset_right = 11.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_ciekv")
+texture = ExtResource("9_6gch1")
 
 [node name="EnergyBar" type="ProgressBar" parent="CanvasLayer" unique_id=770588698 node_paths=PackedStringArray("player")]
 anchors_preset = -1
@@ -184,12 +185,12 @@ offset_top = -45.0
 offset_right = 439.0
 offset_bottom = -20.0
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("10_7wygf")
+theme_override_fonts/font = ExtResource("10_n6h2n")
 theme_override_styles/background = SubResource("StyleBoxFlat_ciekv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_7wygf")
 value = 53.8
 show_percentage = false
-script = ExtResource("9_l31on")
+script = ExtResource("11_2o1u2")
 player = NodePath("../../Player2")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/EnergyBar" unique_id=1652162581]
@@ -205,7 +206,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("12_8mfbs")
+texture = ExtResource("12_x5kok")
 
 [node name="OxygenBar" type="ProgressBar" parent="CanvasLayer" unique_id=292694260 node_paths=PackedStringArray("player")]
 anchors_preset = -1
@@ -224,7 +225,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 value = 66.79
 fill_mode = 3
 show_percentage = false
-script = ExtResource("10_lhwjq")
+script = ExtResource("13_46rpi")
 player = NodePath("../../Player2")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/OxygenBar" unique_id=1581441325]
@@ -240,9 +241,15 @@ offset_right = 12.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("14_hllwx")
+texture = ExtResource("14_cr4q7")
 
 [node name="ParticleManager" type="Node2D" parent="." unique_id=1192752574]
-script = ExtResource("8_rerw8")
+script = ExtResource("15_241cq")
+
+[node name="OxygenTimer" type="Timer" parent="." unique_id=889547086]
+autostart = true
+script = ExtResource("16_mwwhy")
+
+[connection signal="timeout" from="OxygenTimer" to="Player2" method="_on_oxygen_timer_timeout"]
 
 [editable path="Player2"]
