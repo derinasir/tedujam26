@@ -33,6 +33,7 @@ func _ready() -> void:
 	health = maxHealth
 	energy = maxEnergy
 	oxygen = maxOxygen
+	GameEvents.player_picked_fuel.connect(_on_player_picked_fuel)
 
 
 func _process(_delta: float) -> void:
@@ -161,3 +162,9 @@ func _on_oxygen_timer_timeout() -> void:
 	oxygen -= 1
 	GameEvents.player_oxygen_changed.emit()
 	pass # Replace with function body.
+
+func _on_player_picked_fuel() -> void:
+	GameEvents.player_energy_changed.emit()
+	energy += 50
+	if energy > maxEnergy:
+		energy = maxEnergy

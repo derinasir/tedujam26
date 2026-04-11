@@ -6,13 +6,14 @@
 [ext_resource type="Shader" path="res://src/levels/test_level_01/icon.gdshader" id="3_rerw8"]
 [ext_resource type="Script" uid="uid://b1cmu7c1hrfp8" path="res://scripts/wireframe.gd" id="4_f40no"]
 [ext_resource type="Texture2D" uid="uid://b1w8ma4swht3k" path="res://icon.svg" id="4_rerw8"]
+[ext_resource type="PackedScene" uid="uid://cab2856an4j5w" path="res://scenes/fuel_pack.tscn" id="5_7wygf"]
 [ext_resource type="PackedScene" uid="uid://f11pn7xc7uju" path="res://src/ui/Healthbar.tscn" id="6_jst6l"]
 [ext_resource type="Script" uid="uid://dbkvpmy5mcd1r" path="res://src/ui/healthbar.gd" id="7_rerw8"]
 [ext_resource type="Script" uid="uid://bx5l8y17lq1po" path="res://src/levels/test_level_04/particle_manager.gd" id="8_rerw8"]
 [ext_resource type="Texture2D" uid="uid://c6vtwn5iyym3g" path="res://src/ui/health_icon.png" id="9_ciekv"]
-[ext_resource type="Script" uid="uid://cs5nrqeht7fll" path="res://src/ui/energybar.gd" id="9_l31on"]
+[ext_resource type="Script" path="res://src/ui/energybar.gd" id="9_l31on"]
 [ext_resource type="FontFile" uid="uid://bxg64aq3t6bvj" path="res://src/ui/Dico.ttf" id="10_7wygf"]
-[ext_resource type="Script" uid="uid://44syxd3u13t4" path="res://src/ui/oxygenbar.gd" id="10_lhwjq"]
+[ext_resource type="Script" path="res://src/ui/oxygenbar.gd" id="10_lhwjq"]
 [ext_resource type="Texture2D" uid="uid://bpj30yabums5p" path="res://src/ui/energy_icon.png" id="12_8mfbs"]
 [ext_resource type="Texture2D" uid="uid://cvg7832jf7rao" path="res://src/ui/oxygen_icon.png" id="14_hllwx"]
 
@@ -21,9 +22,6 @@ light_mode = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rerw8"]
 shader = ExtResource("3_rerw8")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_yiob1"]
-radius = 44.04543
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7d7xq"]
 light_mode = 2
@@ -67,7 +65,7 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 
-[node name="TestLevel02" type="Node2D" unique_id=121122102]
+[node name="TestLevel03" type="Node2D" unique_id=121122102]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1578938363]
 color = Color(0.16206557, 0.1620656, 0.16206548, 1)
@@ -87,25 +85,8 @@ position = Vector2(481, 225)
 scale = Vector2(250.95311, 140.79688)
 texture = ExtResource("4_rerw8")
 
-[node name="FuelPack" type="Area2D" parent="Env" unique_id=1490841750 groups=["fuel_pack"]]
+[node name="FuelPack" parent="Env" unique_id=1122233973 instance=ExtResource("5_7wygf")]
 position = Vector2(996.00006, 338)
-scale = Vector2(1, 0.99999994)
-collision_layer = 8
-collision_mask = 0
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/FuelPack" unique_id=1207640000]
-shape = SubResource("CircleShape2D_yiob1")
-
-[node name="FuelPack2" type="Area2D" parent="Env" unique_id=1974773515 groups=["fuel_pack"]]
-position = Vector2(-67, 386)
-scale = Vector2(1, 0.99999994)
-collision_layer = 8
-collision_mask = 0
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Env/FuelPack2" unique_id=709475324]
-shape = SubResource("CircleShape2D_yiob1")
 
 [node name="Wall" type="StaticBody2D" parent="Env" unique_id=766438538 groups=["wall"]]
 collision_layer = 9
@@ -114,9 +95,10 @@ collision_mask = 4
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Env/Wall" unique_id=1258004679]
 polygon = PackedVector2Array(654, 491, 814, 418, 1018, 468, 1130, 350, 1038, 192, 852, 152, 746, 41, 559, 51, 338, -37, 147, 124, 86, 442, 317, 725, 617, 841, 640, 912, 542, 919, 236, 793, 3, 457, 63, 111, 331, -82, 556, -17, 808, -21, 906, 87, 1102, 114, 1225, 336, 1079, 526, 830, 486, 691, 550)
 
-[node name="Player2" parent="." unique_id=974975622 instance=ExtResource("1_is3aj")]
+[node name="Player2" parent="." unique_id=974975622 groups=["player"] instance=ExtResource("1_is3aj")]
 material = SubResource("CanvasItemMaterial_7d7xq")
 position = Vector2(524, 231)
+collision_mask = 9
 ROTATION_SPEED = 1.5
 
 [node name="YellowLight" type="PointLight2D" parent="Player2/Pivot" parent_id_path=PackedInt32Array(974975622, 759011065) index="0" unique_id=794773651]
@@ -187,7 +169,7 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("10_7wygf")
 theme_override_styles/background = SubResource("StyleBoxFlat_ciekv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_7wygf")
-value = 53.8
+value = 100.0
 show_percentage = false
 script = ExtResource("9_l31on")
 player = NodePath("../../Player2")
