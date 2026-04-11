@@ -49,6 +49,6 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_yiob1")
 
 [node name="Player" parent="." unique_id=974975622 instance=ExtResource("1_5ywb8")]
-position = Vector2(463, 206)
+position = Vector2(524, 231)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1368984700]
