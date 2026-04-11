@@ -111,7 +111,7 @@ height = 1024.0
 [node name="Sprite2D" parent="Player2/Pivot" parent_id_path=PackedInt32Array(974975622, 759011065) index="1" unique_id=366860962]
 material = SubResource("CanvasItemMaterial_f40no")
 
-[node name="CollisionShape2D" parent="Player2" index="1" unique_id=741166675]
+[node name="CollisionShape2D" parent="Player2" index="2" unique_id=741166675]
 visible = false
 
 [node name="ConeLight" type="PointLight2D" parent="Player2" unique_id=358780824 node_paths=PackedStringArray("player")]

@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="845c2ece-0240-4901-8e6f-5419068706de" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.new_project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.new_project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/autoloads/game_events.gd" beforeDir="false" afterPath="$PROJECT_DIR$/src/autoloads/game_events.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/levels/test_level_01/test_level_03_tilemap.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/test_level_01/test_level_03_tilemap.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/levels/test_level_04/particle_manager.gd" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/test_level_04/particle_manager.gd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/player/player.gd" beforeDir="false" afterPath="$PROJECT_DIR$/src/player/player.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player/player.gd.uid" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player/player.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/src/player/player.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/player/player2.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/src/player/player2.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +27,7 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="29" />
+    <option name="cachedIndexableFilesCount" value="30" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -125,6 +126,8 @@
       <workItem from="1775865432269" duration="3882000" />
       <workItem from="1775869619869" duration="800000" />
       <workItem from="1775928875538" duration="340000" />
+      <workItem from="1775941131085" duration="1676000" />
+      <workItem from="1775945360302" duration="269000" />
     </task>
     <servers />
   </component>

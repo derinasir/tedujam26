@@ -1,4 +1,4 @@
-class_name Player
+# class_name Player
 extends CharacterBody2D
 
 const FORCE: float = 100.0
@@ -6,7 +6,6 @@ const THRUSTER_FORCE: float = 400.0
 const FRICTION: float = 2.0
 const BRAKE_FORCE: float = 5.0
 const VELOCITY_CAP: float = 400.0
-const FRICTION_BUFFER_TIME: float = 0.15
 
 @export_group("Settings")
 @export_range(0.0, 1.0) var WALL_FRICTION: float = 0.7
@@ -25,10 +24,6 @@ var oxygen: float
 var is_thruster_on: bool = false
 var is_fricting_walls: bool = false
 var last_input_direction: Vector2 = Vector2.UP
-var friction_buffer_timer: float = 0.0
-var smoothed_friction_point: Vector2 = Vector2.ZERO
-var smoothed_friction_normal: Vector2 = Vector2.ZERO
-var friction_pos: Vector2 = Vector2.ZERO
 
 @onready var pivot: Node2D = $Pivot
 @onready var friction_stream_player: AudioStreamPlayer = $FrictionStreamPlayer
@@ -40,8 +35,6 @@ func _ready() -> void:
 	energy = maxEnergy
 	oxygen = maxOxygen
 	GameEvents.player_picked_fuel.connect(_on_player_picked_fuel)
-	GameEvents.wall_friction_started.connect(_on_wall_friction_started)
-	GameEvents.wall_friction_ended.connect(_on_wall_friction_ended)
 
 
 func _process(_delta: float) -> void:
@@ -129,69 +122,32 @@ func handle_thrust_audio(delta: float) -> void:
 	thrust_player.pitch_scale = lerp(thrust_player.pitch_scale, target_pitch, delta * 2.0)
 
 
-func handle_wall_friction(delta: float) -> void:
-	var was_fricting = is_fricting_walls
-	var collision_detected: bool = false
-
-	var best_collision_point := Vector2.ZERO
-	var best_collision_normal := Vector2.ZERO
+func handle_wall_friction(_delta: float) -> void:
+	var current_friction_state: bool = false
+	var friction_point := Vector2.ZERO
+	var friction_normal := Vector2.ZERO
+	var friction_direction := Vector2.ZERO
 
 	if get_slide_collision_count() > 0 and velocity.length() > MIN_FRICTION_SPEED:
-		var max_penetration := -1.0
 		for i in get_slide_collision_count():
 			var collision = get_slide_collision(i)
 			var normal = collision.get_normal()
-			var penetration = collision.get_depth()
+			if velocity.dot(normal) < 0:
+				current_friction_state = true
+				friction_point = collision.get_position()
+				friction_normal = normal
+				friction_direction = velocity.slide(normal).normalized()
+				velocity = velocity.slide(normal) * (1.0 - WALL_FRICTION)
+				break
 
-			if velocity.dot(normal) < -0.1:
-				collision_detected = true
-				if penetration > max_penetration:
-					max_penetration = penetration
-					best_collision_point = collision.get_position()
-					best_collision_normal = normal
-
-		if collision_detected:
-			var target_velocity = velocity.slide(best_collision_normal) * (1.0 - WALL_FRICTION)
-			velocity = velocity.move_toward(target_velocity, WALL_FRICTION * velocity.length() * delta * 5.0)
-
-	if collision_detected:
-		friction_buffer_timer = FRICTION_BUFFER_TIME
-		is_fricting_walls = true
-
-		if smoothed_friction_point == Vector2.ZERO:
-			smoothed_friction_point = best_collision_point
-			smoothed_friction_normal = best_collision_normal
-		else:
-			smoothed_friction_point = lerp(smoothed_friction_point, best_collision_point, 20.0 * delta)
-			smoothed_friction_normal = lerp(smoothed_friction_normal, best_collision_normal, 20.0 * delta).normalized()
-	else:
-		friction_buffer_timer -= delta
-		if friction_buffer_timer <= 0:
-			is_fricting_walls = false
-		else:
-			smoothed_friction_point += velocity * delta
-
-	if is_fricting_walls:
-		friction_pos = smoothed_friction_point
-		var current_dir = velocity.slide(smoothed_friction_normal).normalized()
-		GameEvents.wall_friction_updated.emit(smoothed_friction_point, smoothed_friction_normal, current_dir)
-
-	if is_fricting_walls and not was_fricting:
-		var current_dir = velocity.slide(smoothed_friction_normal).normalized()
-		GameEvents.wall_friction_started.emit(smoothed_friction_point, smoothed_friction_normal, current_dir)
-	elif not is_fricting_walls and was_fricting:
+	if current_friction_state:
+		GameEvents.wall_friction_started.emit(friction_point, friction_normal, friction_direction)
+	elif is_fricting_walls and not current_friction_state:
 		GameEvents.wall_friction_ended.emit()
-		smoothed_friction_point = Vector2.ZERO
-		smoothed_friction_normal = Vector2.ZERO
 
+	is_fricting_walls = current_friction_state
 	if is_fricting_walls:
-		update_friction_vfx_position()
-
-
-func update_friction_vfx_position() -> void:
-	var current_dir = velocity.slide(smoothed_friction_normal).normalized()
-	if current_dir == Vector2.ZERO:
-		current_dir = velocity.normalized()
+		get_hurt(damageFromWallFriction)
 
 
 func get_hurt(damage: float) -> void:
@@ -202,9 +158,6 @@ func get_hurt(damage: float) -> void:
 	GameEvents.player_hurt.emit()
 
 
-func _on_wall_friction_started(global_pos: Vector2, normal: Vector2, direction: Vector2) -> void:
-	print("friction start")
-	friction_stream_player.play()
 
 func _on_oxygen_timer_timeout() -> void:
 	oxygen -= 1
@@ -216,7 +169,3 @@ func _on_player_picked_fuel() -> void:
 	energy += 50
 	if energy > maxEnergy:
 		energy = maxEnergy
-		
-func _on_wall_friction_ended() -> void:
-	print("friction end")
-	friction_stream_player.stop()

@@ -8,6 +8,7 @@ signal pause_requested(should_pause: bool)
 signal sonar_sent(direction: Vector2, feedback_delay: float)
 signal sonar_detected(group_name: String, data: Dictionary)
 signal wall_friction_started(global_pos: Vector2, normal: Vector2, direction: Vector2)
+signal wall_friction_updated(global_pos: Vector2, normal: Vector2, direction: Vector2)
 signal wall_friction_ended
 signal request_draw_dot(sonar_dots: Array[SonarDot])
 signal player_hurt
