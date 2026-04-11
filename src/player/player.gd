@@ -1,5 +1,5 @@
-extends CharacterBody2D
 class_name Player
+extends CharacterBody2D
 
 signal wall_friction_started(global_pos: Vector2, normal: Vector2)
 signal wall_friction_ended
@@ -16,9 +16,8 @@ const VELOCITY_CAP: float = 400.0
 @export var ROTATION_SPEED: float = 10.0
 @export var THRUST_FADE_SPEED: float = 5.0
 @export var maxHealth: float = 100.0
-var health: float 
 
-
+var health: float
 var is_thruster_on: bool = false
 var is_fricting_walls: bool = false
 var last_input_direction: Vector2 = Vector2.UP
@@ -29,6 +28,7 @@ var last_input_direction: Vector2 = Vector2.UP
 
 func _ready() -> void:
 	health = maxHealth
+
 
 func _process(_delta: float) -> void:
 	is_thruster_on = Input.is_action_pressed("thruster")
@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	handle_wall_friction(delta)
 
+
 func handle_movement(input_dir: float, delta: float) -> void:
 	# Push along whichever way the pivot is currently facing
 	var facing := Vector2.RIGHT.rotated(pivot.rotation)
@@ -75,29 +76,26 @@ func handle_movement(input_dir: float, delta: float) -> void:
 func handle_rotation(input_dir: float, delta: float) -> void:
 	pivot.rotation += input_dir * ROTATION_SPEED * delta
 
+
 # func handle_movement(input_dir: Vector2, delta: float) -> void:
 # 	if input_dir != Vector2.ZERO:
 # 		var final_force = THRUSTER_FORCE if is_thruster_on else FORCE
-# 
+#
 # 		if velocity.length() > 0 and input_dir.dot(velocity.normalized()) < 0:
 # 			velocity = velocity.move_toward(Vector2.ZERO, final_force * BRAKE_FORCE * delta)
-# 
+#
 # 		velocity += input_dir * final_force * delta
-# 
+#
 # 		if not is_thruster_on:
 # 			velocity = velocity.limit_length(VELOCITY_CAP)
 # 	else:
 # 		velocity = velocity.move_toward(Vector2.ZERO, FORCE * FRICTION * delta)
-
-
 # func handle_rotation(input_dir: Vector2, delta: float) -> void:
 # 	if input_dir != Vector2.ZERO:
 # 		last_input_direction = input_dir
-# 
+#
 # 	var target_angle = last_input_direction.angle()
 # 	pivot.rotation = lerp_angle(pivot.rotation, target_angle, ROTATION_SPEED * delta)
-
-
 func handle_thrust_audio(delta: float) -> void:
 	var is_moving = velocity.length() > 10.0
 	var target_volume = 0.0 if (is_thruster_on and is_moving) else -80.0
@@ -126,7 +124,7 @@ func handle_wall_friction(_delta: float) -> void:
 
 			if velocity.dot(normal) < 0:
 				velocity = velocity.slide(normal) * (1.0 - WALL_FRICTION)
-				print( "Friction started")
+				print("Friction started")
 				wall_friction_started.emit(point, normal)
 				current_friction_state = true
 
@@ -134,6 +132,7 @@ func handle_wall_friction(_delta: float) -> void:
 		wall_friction_ended.emit()
 
 	is_fricting_walls = current_friction_state
+
 
 func get_hurt(damage: float) -> void:
 	health -= damage
