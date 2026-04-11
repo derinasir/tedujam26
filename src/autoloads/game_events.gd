@@ -15,3 +15,4 @@ signal player_hurt
 signal player_energy_changed
 signal player_oxygen_changed
 signal player_picked_fuel
+signal oxygen_depleted

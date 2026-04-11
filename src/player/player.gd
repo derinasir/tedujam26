@@ -175,6 +175,7 @@ func handle_wall_friction(delta: float) -> void:
 		friction_pos = smoothed_friction_point
 		var current_dir = velocity.slide(smoothed_friction_normal).normalized()
 		GameEvents.wall_friction_updated.emit(smoothed_friction_point, smoothed_friction_normal, current_dir)
+		get_hurt(damageFromWallFriction * delta)
 
 	if is_fricting_walls and not was_fricting:
 		var current_dir = velocity.slide(smoothed_friction_normal).normalized()
@@ -195,7 +196,7 @@ func update_friction_vfx_position() -> void:
 
 
 func get_hurt(damage: float) -> void:
-	health -= damage
+	health -= damage 
 	if health <= 0:
 		GameEvents.player_died.emit()
 		pass
@@ -207,7 +208,7 @@ func _on_wall_friction_started(global_pos: Vector2, normal: Vector2, direction: 
 	friction_stream_player.play()
 
 func _on_oxygen_timer_timeout() -> void:
-	oxygen -= 1
+	oxygen -= 0.5
 	GameEvents.player_oxygen_changed.emit()
 	pass # Replace with function body.
 

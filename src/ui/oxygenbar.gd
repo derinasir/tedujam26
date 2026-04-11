@@ -1,14 +1,16 @@
 extends ProgressBar
-@export var player: Player
+var MAXTIME: float 
+var time_left: float
 
 func _ready() -> void:
 	value = max_value
-	GameEvents.player_oxygen_changed.connect(_on_player_oxygen_changed)
-	pass 
-
+	MAXTIME = max_value
+	time_left = MAXTIME
+	value = time_left 
 
 func _process(delta: float) -> void:
-	pass
-
-func _on_player_oxygen_changed() -> void:
-	value = player.oxygen
+	time_left -= delta
+	value = time_left 
+	if time_left <= 0:
+		time_left = 0
+		GameEvents.oxygen_depleted.emit()
