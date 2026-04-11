@@ -28,7 +28,7 @@ spread_angle = 60.0
 ray_length = 225.0
 sfx_sonar_ping = ExtResource("4_bpn8n")
 sfx_void = ExtResource("5_03rh0")
-cooldown_time = 2.0
+cooldown_time = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741166675]
 rotation = 1.5707964
