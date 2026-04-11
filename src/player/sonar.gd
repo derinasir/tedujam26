@@ -14,19 +14,12 @@ extends Node2D
 @export var feedback_delay: float = 0.5
 @export var cooldown_time: float = 4.0
 
-var group_data: Dictionary
+var hitpoints: Array[Vector2] = []
 var _can_sonar: bool = true
 
 
 func _ready() -> void:
 	GameEvents.sonar_detected.connect(_on_sonar_detected)
-
-	group_data = {
-		"fuel_pack": { "priority": 1, "stream": sfx_fuel },
-		"enemy": { "priority": 2, "stream": sfx_enemy },
-		"wall": { "priority": 3, "stream": sfx_wall },
-		"void": { "priority": 99, "stream": sfx_void },
-	}
 	create_rays()
 
 
@@ -55,7 +48,7 @@ func create_rays() -> void:
 		ray.collide_with_areas = true
 		add_child(ray)
 
-var hitpoints: Array[Vector2] = []
+
 func execute_sonar() -> void:
 	_can_sonar = false
 
@@ -96,7 +89,7 @@ func execute_sonar() -> void:
 	await get_tree().create_timer(feedback_delay).timeout
 	process_detected_objects(detected_objects)
 
-	
+
 func start_cooldown() -> void:
 	await get_tree().create_timer(cooldown_time).timeout
 	_can_sonar = true
@@ -111,8 +104,8 @@ func process_detected_objects(objects: Array[Node]) -> void:
 	else:
 		for object in objects:
 			for group in object.get_groups():
-				if group_data.has(group):
-					var priority: int = group_data[group]["priority"]
+				if Constants.group_data.has(group):
+					var priority: int = Constants.group_data[group]["priority"]
 					if priority < highest_priority:
 						highest_priority = priority
 						target_group = group
@@ -120,11 +113,24 @@ func process_detected_objects(objects: Array[Node]) -> void:
 		if target_group == "":
 			target_group = "void"
 
-	var data = group_data[target_group]
-	GameEvents.sonar_detected.emit(target_group, data.stream, data.priority)
+	var data = Constants.group_data[target_group]
+	GameEvents.sonar_detected.emit(target_group, data)
 
 
-func _on_sonar_detected(group_name: String, stream: AudioStream, _priority: int) -> void:
-	if stream:
-		SFXManager.play_sfx(stream)
+func _on_sonar_detected(group_name: String, data: Dictionary) -> void:
+	var stream: AudioStream
+	match group_name:
+		"fuel_pack":
+			stream = sfx_fuel
+		"enemy":
+			stream = sfx_void
+		"wall":
+			stream = sfx_wall
+		"void":
+			stream = sfx_void
+		_:
+			stream = sfx_void
+			print("sonar.gd: no stream matched")
+
+	SFXManager.play_sfx(stream)
 	print("Feedback: ", group_name)
