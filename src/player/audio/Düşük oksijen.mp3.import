@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bhsjv8kqi03li"
+path="res://.godot/imported/Düşük oksijen.mp3-68a15d7dc4856de34d74ac6c076bc54c.mp3str"
+
+[deps]
+
+source_file="res://src/player/audio/Düşük oksijen.mp3"
+dest_files=["res://.godot/imported/Düşük oksijen.mp3-68a15d7dc4856de34d74ac6c076bc54c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

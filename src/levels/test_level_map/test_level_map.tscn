@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bpj30yabums5p" path="res://src/ui/energy_icon.png" id="13_gtx5a"]
 [ext_resource type="Script" uid="uid://44syxd3u13t4" path="res://src/ui/oxygenbar.gd" id="14_58361"]
 [ext_resource type="Texture2D" uid="uid://cvg7832jf7rao" path="res://src/ui/oxygen_icon.png" id="15_5e76v"]
+[ext_resource type="AudioStream" uid="uid://bhsjv8kqi03li" path="res://src/player/audio/Düşük oksijen.mp3" id="15_fnvr4"]
 [ext_resource type="Script" uid="uid://bx5l8y17lq1po" path="res://src/levels/test_level_04/particle_manager.gd" id="16_sxccj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jst6l"]
@@ -236,6 +237,7 @@ value = 66.79
 fill_mode = 3
 show_percentage = false
 script = ExtResource("14_58361")
+critical_audio_stream = ExtResource("15_fnvr4")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/OxygenBar" unique_id=1581441325]
 layout_mode = 1

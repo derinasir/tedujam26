@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cr40ekvaup1xk"
+path="res://.godot/imported/sonar tehlike metal.mp3-561f5d0ca3248f5f6bceb5cb190e25a4.mp3str"
+
+[deps]
+
+source_file="res://src/player/audio/sonar tehlike metal.mp3"
+dest_files=["res://.godot/imported/sonar tehlike metal.mp3-561f5d0ca3248f5f6bceb5cb190e25a4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
