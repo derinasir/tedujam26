@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://44syxd3u13t4" path="res://src/ui/oxygenbar.gd" id="14_id0hp"]
 [ext_resource type="Texture2D" uid="uid://cvg7832jf7rao" path="res://src/ui/oxygen_icon.png" id="15_bof2s"]
 [ext_resource type="Script" uid="uid://bx5l8y17lq1po" path="res://src/levels/test_level_04/particle_manager.gd" id="16_o5jf2"]
-[ext_resource type="PackedScene" uid="uid://dugme0ugsx4yc" path="res://src/levels/test_level_particles/bubbles.tscn" id="17_587i0"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jst6l"]
 light_mode = 1
@@ -228,8 +227,5 @@ texture = ExtResource("15_bof2s")
 [node name="ParticleManager" type="Node2D" parent="." unique_id=1192752574 node_paths=PackedStringArray("player")]
 script = ExtResource("16_o5jf2")
 player = NodePath("../Player2")
-
-[node name="Bubbles" parent="." unique_id=1130807369 instance=ExtResource("17_587i0")]
-position = Vector2(435, 442)
 
 [editable path="Player2"]
