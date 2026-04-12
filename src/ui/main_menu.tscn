@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://cfu565uv2dvcg"]
 
-[ext_resource type="Script" uid="uid://bnjfp2tiulapk" path="res://src/ui/main_menu.gd" id="1_qkuje"]
+[ext_resource type="Script" uid="uid://bgdppggtr6ahf" path="res://src/ui/main_menu.gd" id="1_qkuje"]
+[ext_resource type="Texture2D" uid="uid://cmv241it32446" path="res://Assets/menu.png" id="2_qoywa"]
+[ext_resource type="Texture2D" uid="uid://cbbpi2807qih5" path="res://Assets/tutorial.png" id="3_5mgu5"]
+[ext_resource type="FontFile" uid="uid://bxg64aq3t6bvj" path="res://src/ui/Dico.ttf" id="3_f0s2b"]
+[ext_resource type="AudioStream" uid="uid://dwclx5owjr1ua" path="res://Assets/main menu.mp3" id="5_h03rr"]
 
-[node name="MainMenu" type="Control" unique_id=277952785 node_paths=PackedStringArray("play_button")]
+[node name="Node2D" type="Node2D" unique_id=34611999]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=20925272]
+
+[node name="MainMenu" type="Control" parent="CanvasLayer" unique_id=277952785]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,16 +18,86 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qkuje")
-play_button = NodePath("CenterContainer/Button")
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=775989741]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MainMenu" unique_id=338125107]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_qoywa")
+expand_mode = 1
 
-[node name="Button" type="Button" parent="CenterContainer" unique_id=127559798]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu" unique_id=1066418539]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 338.0
+offset_top = -145.0
+offset_right = 491.0
+offset_bottom = 130.0
+grow_vertical = 2
+theme_override_constants/separation = 21
+
+[node name="Play" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer" unique_id=1022332201]
 layout_mode = 2
-text = "Start Game"
+theme_override_colors/font_color = Color(0.8039216, 0.9764706, 0.6509804, 1)
+theme_override_fonts/font = ExtResource("3_f0s2b")
+theme_override_font_sizes/font_size = 40
+text = "Play"
+flat = true
+
+[node name="Tutorial" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer" unique_id=167717886]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8039216, 0.9764706, 0.6509804, 1)
+theme_override_fonts/font = ExtResource("3_f0s2b")
+theme_override_font_sizes/font_size = 40
+text = "Tutorial"
+flat = true
+
+[node name="Settings" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer" unique_id=908541697]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8039216, 0.9764706, 0.6509804, 1)
+theme_override_fonts/font = ExtResource("3_f0s2b")
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+flat = true
+
+[node name="Quit" type="Button" parent="CanvasLayer/MainMenu/VBoxContainer" unique_id=530787159]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8039216, 0.9764706, 0.6509804, 1)
+theme_override_fonts/font = ExtResource("3_f0s2b")
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+flat = true
+
+[node name="TutorialScreen" type="TextureRect" parent="CanvasLayer/MainMenu" unique_id=695620945]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_5mgu5")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TutorialExitButton" type="Button" parent="CanvasLayer/MainMenu/TutorialScreen" unique_id=596959256]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=417383309]
+stream = ExtResource("5_h03rr")
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Play" to="CanvasLayer/MainMenu" method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Tutorial" to="CanvasLayer/MainMenu" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/VBoxContainer/Quit" to="CanvasLayer/MainMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/TutorialScreen/TutorialExitButton" to="CanvasLayer/MainMenu" method="_on_tutorial_exit_button_pressed"]

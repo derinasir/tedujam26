@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="845c2ece-0240-4901-8e6f-5419068706de" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.new_project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.new_project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/autoloads/game_events.gd" beforeDir="false" afterPath="$PROJECT_DIR$/src/autoloads/game_events.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/levels/test_level_01/test_level_03_tilemap.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/test_level_01/test_level_03_tilemap.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player/player.gd" beforeDir="false" afterPath="$PROJECT_DIR$/src/player/player.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/oxygenbar.gd" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/oxygenbar.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/main_menu.gd" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/main_menu.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/main_menu.gd.uid" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/main_menu.gd.uid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/main_menu.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/main_menu.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
