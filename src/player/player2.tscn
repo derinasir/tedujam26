@@ -12,6 +12,14 @@
 [ext_resource type="AudioStream" uid="uid://c126sflinenn7" path="res://src/player/audio/thrust ses.mp3" id="6_t1ns4"]
 [ext_resource type="AudioStream" uid="uid://ctstaf7y8arle" path="res://src/player/audio/sonar bosluk.mp3" id="7_gg568"]
 [ext_resource type="Script" uid="uid://cxtqdxrryadxk" path="res://scripts/fuel_pack_collect.gd" id="7_s1y7p"]
+[ext_resource type="Script" uid="uid://co6viqbjd8sg7" path="res://src/player/lights.gd" id="12_aq2k6"]
+[ext_resource type="Texture2D" uid="uid://bxc5syowrwmgk" path="res://src/levels/test_level_01/spark_texture.png" id="13_cw68m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_irso5"]
+radius = 39.623226
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s1y7p"]
+radius = 47.232807
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ug3iu"]
 shader = ExtResource("2_03rh0")
@@ -22,16 +30,24 @@ shader_parameter/wave_count = 3.0
 shader_parameter/wave_color = Color(1, 1, 1, 1)
 shader_parameter/thickness = 0.02000000095
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_irso5"]
-radius = 39.623226
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_s1y7p"]
-radius = 47.232807
-
 [node name="Player" type="CharacterBody2D" unique_id=974975622]
 collision_layer = 4
 motion_mode = 1
 script = ExtResource("1_irso5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741166675]
+rotation = 1.5707964
+shape = SubResource("CircleShape2D_irso5")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1872130803]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("7_s1y7p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=684171311]
+scale = Vector2(1.08, 1)
+shape = SubResource("CircleShape2D_s1y7p")
 
 [node name="WaveRect" type="Sprite2D" parent="." unique_id=1726095625]
 material = SubResource("ShaderMaterial_ug3iu")
@@ -58,22 +74,43 @@ sfx_void = ExtResource("7_gg568")
 feedback_delay = 1.5
 cooldown_time = 3.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741166675]
-rotation = 1.5707964
-shape = SubResource("CircleShape2D_irso5")
+[node name="Lights" type="Node2D" parent="Pivot" unique_id=1529247297]
+script = ExtResource("12_aq2k6")
+
+[node name="Dot" type="PointLight2D" parent="Pivot/Lights" unique_id=161582805]
+position = Vector2(37, -22)
+enabled = false
+color = Color(1, 0, 0, 1)
+energy = 10.0
+texture = ExtResource("13_cw68m")
+texture_scale = 0.05
+
+[node name="Dot2" type="PointLight2D" parent="Pivot/Lights" unique_id=1005046715]
+position = Vector2(37, 23)
+enabled = false
+color = Color(1, 0, 0, 1)
+energy = 10.0
+texture = ExtResource("13_cw68m")
+texture_scale = 0.05
+
+[node name="Dot3" type="PointLight2D" parent="Pivot/Lights" unique_id=2037918585]
+position = Vector2(-43.199997, -22.2)
+enabled = false
+color = Color(1, 0, 0, 1)
+energy = 10.0
+texture = ExtResource("13_cw68m")
+texture_scale = 0.05
+
+[node name="Dot4" type="PointLight2D" parent="Pivot/Lights" unique_id=1227053995]
+position = Vector2(-43.199997, 22.8)
+enabled = false
+color = Color(1, 0, 0, 1)
+energy = 10.0
+texture = ExtResource("13_cw68m")
+texture_scale = 0.05
 
 [node name="ThrustAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=1900394710]
 stream = ExtResource("6_t1ns4")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=1872130803]
-collision_layer = 0
-collision_mask = 8
-monitorable = false
-script = ExtResource("7_s1y7p")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=684171311]
-scale = Vector2(1.08, 1)
-shape = SubResource("CircleShape2D_s1y7p")
 
 [node name="FrictionStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1733616431]
 
