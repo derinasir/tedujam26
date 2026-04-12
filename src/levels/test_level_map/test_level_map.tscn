@@ -88,7 +88,7 @@ scale = Vector2(250.95311, 140.79688)
 texture = ExtResource("4_1e0on")
 
 [node name="FuelPack" parent="Env" unique_id=1122233973 instance=ExtResource("5_xryam")]
-position = Vector2(996.00006, 338)
+position = Vector2(-2870, -1612)
 
 [node name="wall" type="StaticBody2D" parent="Env" unique_id=567236666 groups=["wall"]]
 collision_layer = 9
@@ -130,6 +130,9 @@ position = Vector2(-3514, -1903)
 collision_mask = 9
 ROTATION_SPEED = 1.5
 
+[node name="CollisionShape2D" parent="Player2" index="0" unique_id=741166675]
+visible = false
+
 [node name="YellowLight" type="PointLight2D" parent="Player2/Pivot" parent_id_path=PackedInt32Array(974975622, 759011065) index="0" unique_id=794773651]
 color = Color(1.353256, 0.4057815, 0.10217084, 1)
 energy = 30.0
@@ -139,9 +142,6 @@ height = 1024.0
 
 [node name="Sprite2D" parent="Player2/Pivot" parent_id_path=PackedInt32Array(974975622, 759011065) index="1" unique_id=366860962]
 material = SubResource("CanvasItemMaterial_f40no")
-
-[node name="CollisionShape2D" parent="Player2" index="2" unique_id=741166675]
-visible = false
 
 [node name="ConeLight" type="PointLight2D" parent="Player2" unique_id=358780824 node_paths=PackedStringArray("player")]
 color = Color(1.0810534, 0.31679213, 0.07077583, 1)

@@ -5,6 +5,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_yiob1"]
 radius = 44.04543
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jb06s"]
+light_mode = 2
+
 [node name="FuelPack" type="Area2D" unique_id=1122233973 groups=["fuel_pack"]]
 scale = Vector2(1, 0.99999994)
 collision_layer = 8
@@ -15,6 +18,7 @@ monitoring = false
 shape = SubResource("CircleShape2D_yiob1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1362700399]
+material = SubResource("CanvasItemMaterial_jb06s")
 position = Vector2(-4.6014786e-05, 3.0994415e-06)
 scale = Vector2(3, 3)
 texture = ExtResource("1_jb06s")

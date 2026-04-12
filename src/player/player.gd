@@ -196,7 +196,7 @@ func update_friction_vfx_position() -> void:
 
 
 func get_hurt(damage: float) -> void:
-	health -= damage 
+	health -= damage
 	if health <= 0:
 		GameEvents.player_died.emit()
 		pass
@@ -207,17 +207,20 @@ func _on_wall_friction_started(global_pos: Vector2, normal: Vector2, direction: 
 	print("friction start")
 	friction_stream_player.play()
 
+
 func _on_oxygen_timer_timeout() -> void:
 	oxygen -= 0.5
 	GameEvents.player_oxygen_changed.emit()
 	pass # Replace with function body.
 
+
 func _on_player_picked_fuel() -> void:
-	GameEvents.player_energy_changed.emit()
 	energy += 50
+	GameEvents.player_energy_changed.emit()
 	if energy > maxEnergy:
 		energy = maxEnergy
-		
+
+
 func _on_wall_friction_ended() -> void:
 	print("friction end")
 	friction_stream_player.stop()
