@@ -84,7 +84,6 @@ func handle_movement(input_dir: float, delta: float) -> void:
 		if not is_thruster_on:
 			velocity = velocity.limit_length(VELOCITY_CAP)
 		else:
-			print("energydecreasebrowtf")
 			energy -= energyConsumptionRate * delta
 			GameEvents.player_energy_changed.emit()
 	else:
