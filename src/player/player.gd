@@ -45,7 +45,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	is_thruster_on = Input.is_action_pressed("thruster")
+	is_thruster_on = Input.is_action_pressed("thruster") and energy > 0
 
 
 func _physics_process(delta: float) -> void:
@@ -69,11 +69,11 @@ func _physics_process(delta: float) -> void:
 
 
 func handle_movement(input_dir: float, delta: float) -> void:
-	# Push along whichever way the pivot is currently facing
 	var facing := Vector2.RIGHT.rotated(pivot.rotation)
 
 	if input_dir != 0:
-		var final_force := THRUSTER_FORCE if is_thruster_on else FORCE
+		var can_use_thruster := is_thruster_on and energy > 0
+		var final_force := THRUSTER_FORCE if can_use_thruster else FORCE
 		var move_vec := (facing * input_dir) * -1
 
 		if velocity.length() > 0 and move_vec.dot(velocity.normalized()) < 0:
@@ -81,10 +81,11 @@ func handle_movement(input_dir: float, delta: float) -> void:
 
 		velocity += move_vec * final_force * delta
 
-		if not is_thruster_on:
+		if not can_use_thruster:
 			velocity = velocity.limit_length(VELOCITY_CAP)
 		else:
 			energy -= energyConsumptionRate * delta
+			energy = max(0, energy)
 			GameEvents.player_energy_changed.emit()
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FORCE * FRICTION * delta)
@@ -115,7 +116,7 @@ func handle_rotation(input_dir: float, delta: float) -> void:
 # 	pivot.rotation = lerp_angle(pivot.rotation, target_angle, ROTATION_SPEED * delta)
 func handle_thrust_audio(delta: float) -> void:
 	var is_moving = velocity.length() > 10.0
-	var target_volume = 0.0 if (is_thruster_on and is_moving) else -80.0
+	var target_volume = 0.0 if (is_thruster_on and is_moving and energy > 0) else -80.0
 
 	thrust_player.volume_db = lerp(thrust_player.volume_db, target_volume, THRUST_FADE_SPEED * delta)
 
